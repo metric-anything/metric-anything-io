@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>按钮切换测试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .indicator {
+            padding: 10px 24px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            background: #f9f9f9;
+            color: #666;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator:hover {
+            background: #e9e9e9;
+            color: #333;
+            border-color: #3b82f6;
+        }
+
+        .indicator.active {
+            background: #3b82f6;
+            color: #ffffff;
+            border-color: #3b82f6;
+        }
+
+        .application-slide {
+            display: none;
+            padding: 30px;
+            background: #f9fafb;
+            border-radius: 8px;
+            min-height: 200px;
+        }
+
+        .application-slide.active {
+            display: block;
+        }
+
+        .application-slide h3 {
+            color: #3b82f6;
+            margin-bottom: 15px;
+        }
+
+        .application-slide p {
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .debug-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fef3c7;
+            border-radius: 8px;
+            border: 1px solid #f59e0b;
+        }
+
+        .debug-info h4 {
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+
+        .debug-info pre {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 12px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Abilities 切换测试</h2>
+
+        <div class="carousel-indicators">
+            <button class="indicator active" type="button" onclick="setAbility(0)">MLLM</button>
+            <button class="indicator" type="button" onclick="setAbility(1)">VLA</button>
+        </div>
+
+        <div class="carousel-content">
+            <div class="application-slide active">
+                <h3>Spatial Understanding of MLLMs</h3>
+                <p>这是第一个内容区域 - MLLM 相关内容。点击 VLA 按钮应该会切换到第二个区域。</p>
+                <p>DA3 recovers the visual space from any number of views, covering from single view to multiple views.</p>
+            </div>
+            <div class="application-slide">
+                <h3>VLA Planning</h3>
+                <p>这是第二个内容区域 - VLA Planning 相关内容。点击 MLLM 按钮应该会切换回第一个区域。</p>
+                <p>Accurate visual geometry estimation improves SLAM performance.</p>
+            </div>
+        </div>
+
+        <div class="debug-info">
+            <h4>调试信息：</h4>
+            <pre id="debugOutput">点击按钮后会显示调试信息...</pre>
+        </div>
+    </div>
+
+    <script>
+        // Abilities 区域按钮切换功能
+        let currentAbility = 0;
+        const abilitySlides = document.querySelectorAll('.application-slide');
+        const abilityButtons = document.querySelectorAll('.indicator');
+        
+        console.log('找到的 slides 数量:', abilitySlides.length);
+        console.log('找到的 buttons 数量:', abilityButtons.length);
+
+        function setAbility(index) {
+            const debugOutput = document.getElementById('debugOutput');
+            let debugText = `\n切换调用：index = ${index}\n`;
+            debugText += `当前索引：${currentAbility} -> ${index}\n`;
+            
+            // 移除当前 active 状态
+            if (abilitySlides[currentAbility]) {
+                abilitySlides[currentAbility].classList.remove('active');
+                debugText += `移除 slide ${currentAbility} 的 active\n`;
+            }
+            if (abilityButtons[currentAbility]) {
+                abilityButtons[currentAbility].classList.remove('active');
+                debugText += `移除 button ${currentAbility} 的 active\n`;
+            }
+            
+            // 更新当前索引
+            currentAbility = index;
+            
+            // 添加新的 active 状态
+            if (abilitySlides[currentAbility]) {
+                abilitySlides[currentAbility].classList.add('active');
+                debugText += `添加 slide ${currentAbility} 的 active\n`;
+            }
+            if (abilityButtons[currentAbility]) {
+                abilityButtons[currentAbility].classList.add('active');
+                debugText += `添加 button ${currentAbility} 的 active\n`;
+            }
+            
+            debugText += `\n切换完成！当前显示：${index === 0 ? 'MLLM' : 'VLA'}`;
+            debugOutput.textContent = debugText;
+            
+            console.log('切换完成:', index);
+        }
+
+        // 页面加载时显示初始状态
+        window.addEventListener('DOMContentLoaded', function() {
+            const debugOutput = document.getElementById('debugOutput');
+            debugOutput.textContent = `初始状态：\n找到 ${abilitySlides.length} 个内容区域\n找到 ${abilityButtons.length} 个按钮\n当前显示：MLLM (索引 0)\n\n点击按钮测试切换功能...`;
+        });
+    </script>
+</body>
+</html>

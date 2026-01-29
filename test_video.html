@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频小框测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        /* 测试1: 问题版本 - 使用绝对定位 */
+        .test-1 .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .test-1 video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* 测试2: 修复版本 - 小框显示 */
+        .test-2 .video-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 20px;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        
+        .test-2 video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .section h2 {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .description {
+            color: #666;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎬 视频显示测试</h1>
+        
+        <div class="section test-1">
+            <h2>测试1: 原始版本（问题版本）</h2>
+            <div class="description">
+                使用 position: absolute 的视频，容器使用 padding-bottom 撑开高度
+            </div>
+            <div class="video-container">
+                <video playsinline muted autoplay loop>
+                    <source src="assets/paoku_compressed.mp4" type="video/mp4">
+                    视频加载中...
+                </video>
+            </div>
+            <p style="color: #999;">如果视频跑到最上面或显示异常，说明绝对定位有问题</p>
+        </div>
+        
+        <div class="section test-2">
+            <h2>测试2: 小框版本（修复版本）</h2>
+            <div class="description">
+                使用正常文档流，视频显示在400px宽的小框内，居中对齐
+            </div>
+            <div class="video-container">
+                <video playsinline muted autoplay loop>
+                    <source src="assets/paoku_compressed.mp4" type="video/mp4">
+                    视频加载中...
+                </video>
+            </div>
+            <p style="color: #999;">视频应该显示在一个小框内，居中显示</p>
+        </div>
+        
+        <div style="text-align: center; color: #888; margin-top: 40px;">
+            <p>✅ 如果测试2显示正常，说明小框方案可行</p>
+            <p>❌ 如果测试2也有问题，需要进一步调整CSS</p>
+        </div>
+    </div>
+</body>
+</html>
