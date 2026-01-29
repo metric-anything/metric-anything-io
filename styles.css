@@ -82,7 +82,79 @@ section {
 
 
 
+/* =========================================
+   新增/修改的样式：Teaser 和 宽度对齐
+   ========================================= */
 
+/* 1. Teaser 视频的留白处理 */
+.hero-body {
+    padding: 40px; /* 增加四周留白 */
+    background: var(--bg-tertiary); /* 保持背景色 */
+    border-radius: 20px;
+}
+#teaser {
+    width: 100%;
+    height: auto;
+    border-radius: 12px; /* 视频本身的圆角 */
+    box-shadow: var(--shadow-md);
+}
+
+/* 2. 让 Results 区域宽度对齐 Abstract/Pipeline */
+.results-list {
+    max-width: 1200px; /* 与 abstract-content 保持一致 */
+    margin: 0 auto;
+    width: 100%;
+}
+
+.result-item {
+    width: 100%;
+    margin: 0;
+    /* 移除之前的固定宽度限制，让它填满 results-list */
+}
+
+/* 3. 视频容器填满 Result Item */
+.result-video-small {
+    width: 100%; /* 填满父容器 */
+    max-width: 100%; /* 移除之前的 1200px 限制 */
+    margin: 20px 0; /* 上下间距 */
+    border-radius: 12px;
+    border: none; /* 移除边框让视觉更干净 */
+    box-shadow: none; /* 移除内部阴影 */
+    background: transparent;
+}
+
+.analysis-carousel {
+    width: 100%;
+    padding: 0 20px 30px 20px; /* 给轮播器内部一点间距 */
+}
+
+.carousel-content {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg-tertiary);
+}
+
+/* 4. 图片容器也填满 */
+.result-image-large, 
+.result-image-middle {
+    width: 100%;
+    max-width: 100%;
+    margin: 20px 0;
+    box-shadow: none;
+    background: transparent;
+    border: none;
+}
+.image-with-title {
+    padding: 0 30px; /* 给内部图片一点左右边距 */
+}
+
+/* 5. 确保 Canvas 响应式 */
+.videoMerge {
+    width: 100% !important; /* 强制填满 */
+    height: auto !important;
+    display: block;
+}
 
 
 

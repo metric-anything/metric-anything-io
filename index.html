@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Depth Anything 3: Recovering the Visual Space from Any Views</title>
+    <title>MetricAnything: Scaling Metric Depth Pretraining with Noisy
+        Heterogeneous Sources</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -49,7 +50,6 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <!-- <h2>Depth Anything 3</h2> -->
                 <h2>MetricAnything</h2>
             </div>
             <div class="nav-links">
@@ -67,59 +67,49 @@
     <section class="banner">
         <div class="banner-content">
             <div class="banner-text">
-                <!-- <h2 class="banner-title">Depth Anything 3</h2> -->
                 <h2 class="banner-title">MetricAnything</h2>
-                <h3 class="banner-subtitle">Scaling Depth Pretraining with Noisy
+                <h3 class="banner-subtitle">Scaling Metric Depth Pretraining with Noisy
                     Heterogeneous Sources</h3>
                 <div class="authors">
-                    <a href="https://haotongl.github.io/" target="_blank" >Haotong Lin<sup>*</sup></a>,
-                    <a href="https://github.com/SiliChen321" target="_blank">Sili Chen<sup>*</sup></a>,
-                    <a href="https://liewjunhao.github.io/" target="_blank">Jun Hao Liew<sup>*</sup></a>,
-                    <a href="https://donydchen.github.io" target="_blank">Donny Y. Chen<sup>*</sup></a>,
-                    <a href="https://zhyever.github.io/" target="_blank">Zhenyu Li</a>,
-                    <a href="https://scholar.google.com/citations?user=MjXxWbUAAAAJ" target="_blank">Guang Shi</a>,
-                    <a href="https://scholar.google.com/citations?user=Q8iay0gAAAAJ" target="_blank">Jiashi Feng</a>,
-                    <br>
-                    <a href="https://bingykang.github.io/" target="_blank">Bingyi Kang<sup>*</sup>&dagger;</a>
-
+                    <a href="https://mabaorui.github.io/" target="_blank" >Baorui Ma<sup>*</sup></a>,
+                    <a href="" target="_blank">Jiahui Yang<sup>*</sup></a>,
+                    <a href="https://scholar.google.com/citations?user=L8tcNioAAAAJ&hl=en" target="_blank">Donglin Di<sup>&dagger;</sup></a>,
+                    <a href="https://scholar.google.com/citations?user=gGAoxSAAAAAJ&hl=en" target="_blank">Xuancheng Zhang<sup></sup></a>,
+                    <a href="" target="_blank">Jianxun Cui</a>,
+                    <a href="" target="_blank">Hao Li</a>,
+                    <a href="" target="_blank">Xie Yan</a>,
+                    <a href="" target="_blank">Wei Chen</a>,
                     <br><br>
                     &dagger;Proejct Lead, *Equal Contribution
                 </div>
 
                 <div class="banner-links">
-                    <a href="assets/da3_tech_report_2025.pdf" target="_blank" class="link-btn">
+                    <a href="./assets/MetricAnything.pdf" target="_blank" class="link-btn">
                         <i class="fas fa-file-pdf"></i> Tech Report
                     </a>
-                    <a href="https://arxiv.org/abs/2511.10647" target="_blank" class="link-btn">
+                    <a href="" target="_blank" class="link-btn">
                         <i class="fas fa-graduation-cap"></i> arXiv
                     </a>
-                    <a href="https://huggingface.co/spaces/depth-anything/depth-anything-3" target="_blank" class="link-btn">
-                        <i class="fas fa-rocket"></i> Demo
+                    <a href="" target="_blank" class="link-btn">
+                        <i class="fas fa-rocket"></i> Demo (Coming Soon)
                     </a>
-                    <a href="https://github.com/ByteDance-Seed/depth-anything-3" target="_blank" class="link-btn">
+                    <a href="https://github.com/metric-anything/metric-anything" target="_blank" class="link-btn">
                         <i class="fab fa-github"></i> Code
-                    </a>
-                    <a href="/gallery.html" target="_blank" class="link-btn">
-                        <i class="fas fa-images"></i> Gallery
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 主演示视频 -->
+    
     <section class="main-demo">
         <div class="container">
             <div class="tldr-content">
                 <p>
                     <i class="fas fa-bolt"></i> <strong>TL;DR:</strong> 
-                    <!-- Depth Anything 3 turns any visual input into superior geometry and 3DGS rendering. <br> -->
-                    Depth Anything 3 recovers the space with superior geometry and 3DGS rendering from any visual inputs. <br>
-                    <strong>The secret?</strong> No complex tasks! No special architecture! <br>
-                    just a single, plain transformer trained with a depth-ray representation.
-                    <!-- Radical simplicity: just a single, plain transformer trained with a depth-ray representation. -->
-                    <!-- Depth Anything 3 recovers the visual space from arbitrary visual inputs,<br> -->
-                    <!-- delivering leading geometry (camera poses, depth maps) and 3DGS rendering quality. -->
+                    
+                    Metric Anything: First to demonstrate clear scaling trends in metric depth estimation. Uses Sparse Metric Prompt (randomly masked depth maps) to decouple spatial reasoning from sensor biases, trained on ~20M image-depth pairs. The pretrained model excels at depth completion, super-resolution, and radar-camera fusion, while its distilled prompt-free student achieves SOTA on 7 downstream tasks including monocular depth estimation, camera intrinsics recovery, multi-view 3D reconstruction, and VLA planning.
+                    
                 </p>
             </div>
             <div class="demo-video-container">
@@ -159,30 +149,7 @@
                   in spatial intelligence. These results show that metric depth estimation can benefit from the same scaling laws that drive modern foundation models, 
                   establishing a new path toward scalable and efficient real-world metric perception.</p>
 
-                <!-- <div class="abstract-video-spacer"></div> -->
-
-
-                    <!-- <div class="demo-video-container">
-                            <div class="hero-body">
-                              <video id="teaser" 
-                                class="main-video lazy-video" 
-                                controls playsinline height="40%">
-
-                                <source src="./assets/video/MetricAnything_wo_id.mp4" type="video/mp4">
-                              </video>
-                            </div>
-
-                    </div> -->
                 </section>
-                  <!-- <div class="abstract-video-wrap">
-                    <video id="teaser" controls playsinline>
-                      <source src="./assets/video/MetricAnything_wo_id.mp4" type="video/mp4">
-                    </video>
-                  </div> -->
-
-
-                <!-- <p>We present Depth Anything 3 (DA3), a model that predicts spatially consistent geometry from an arbitrary number of visual inputs, with or without known camera poses. In pursuit of minimal modeling, DA3 yields two key insights: a single plain transformer (e.g., vanilla DINOv2 encoder) is sufficient as a backbone without architectural specialization, and a singular depth-ray prediction target obviates the need for complex multi-task learning. Through our teacher-student training paradigm, the model achieves a level of detail and generalization on par with Depth Anything 2 (DA2). We establish a new visual geometry benchmark covering camera pose estimation, any-view geometry and visual rendering. On this benchmark, DA3 sets a new state-of-the-art across all tasks, surpassing prior SOTA VGGT by an average of 35.7% in camera pose accuracy and 23.6% in geometric accuracy. Moreover, it outperforms DA2 in monocular depth estimation. All models are trained exclusively on public academic datasets.</p> -->
-                <!-- <img src="assets/teaser.png" alt="Performance Comparison Chart" style="width: 100%; height: auto; margin-top: 0px; border-radius: 8px;"> -->
             </div>
             
         </div>
@@ -194,7 +161,6 @@
             <div class="abstract-content" style="text-align: left;">
                 <h3><i class="fas fa-file-alt"></i> Pipeline</h3>
                 
-                <!-- <p>We present Depth Anything 3 (DA3), a model that predicts spatially consistent geometry from an arbitrary number of visual inputs, with or without known camera poses. In pursuit of minimal modeling, DA3 yields two key insights: a single plain transformer (e.g., vanilla DINOv2 encoder) is sufficient as a backbone without architectural specialization, and a singular depth-ray prediction target obviates the need for complex multi-task learning. Through our teacher-student training paradigm, the model achieves a level of detail and generalization on par with Depth Anything 2 (DA2). We establish a new visual geometry benchmark covering camera pose estimation, any-view geometry and visual rendering. On this benchmark, DA3 sets a new state-of-the-art across all tasks, surpassing prior SOTA VGGT by an average of 35.7% in camera pose accuracy and 23.6% in geometric accuracy. Moreover, it outperforms DA2 in monocular depth estimation. All models are trained exclusively on public academic datasets.</p> -->
                 <img src="assets/metricanything/pipe.jpeg" alt="Performance Comparison Chart" style="width: 100%; height: auto; margin-top: 0px; border-radius: 8px;">
                 <p><strong>Overview of Metric Anything.</strong> (I) We aggregate diverse open-source 3D data into per-pixel metric depth maps, forming a ~20M image–depth dataset captured by over 10,000 cameras across heterogeneous scenes. (II) Sparse Metric Prompts, generated by randomly masking depth maps, provide a minimal interface that decouples spatial reasoning from sensor and camera biases, enabling metric depth learning from noisy, heterogeneous sources. (III) The pretrained model and its distilled prompt-free student generalize robustly across multiple downstream tasks, revealing a clear scaling trend and establishing a solid foundation for versatile, data-driven metric perception.</p>
             </div>
@@ -214,7 +180,7 @@
                     <div class="result-info">
                         <h3>Video Demo on Real-world Application in a Zero-shot Setting</h3>
                         <p>
-                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                            <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
                         </p>
                     </div>
                     <div class="result-video-small">
@@ -230,8 +196,8 @@
                     <div class="result-info">
                         <h3>Blind spot completion test for left and right views uncovered by LiDAR</h3>
                         <p>
-                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                            <!-- 可以在这里提示用户左右拖动 -->
+                            <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+                            
                             <br><span style="color:#888; font-size: 0.9em;">(Drag the slider to compare)</span>
                         </p>
                     </div>
@@ -249,7 +215,7 @@
                             <div class="carousel-content">
 
                                 <!-- Slide 1 -->
-                                <div class="analysis-slide active">
+                                <!-- <div class="analysis-slide active">
                                     <div style="position: relative;">
                                         <video class="video" width="100%" id="comp_1" loop playsinline autoplay muted 
                                             src="assets/video/ready/comparison-left-1.mp4" 
@@ -258,10 +224,10 @@
                                         </video>
                                         <canvas height="0" class="videoMerge" id="comp_1Merge"></canvas>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <!-- Slide 2 -->
-                                <div class="analysis-slide">
+                                <!-- <div class="analysis-slide">
                                     <div style="position: relative;">
                                         <video class="video" width="100%" id="comp_2" loop playsinline autoplay muted 
                                             src="assets/video/ready/comparison-right-1.mp4" 
@@ -270,10 +236,10 @@
                                         </video>
                                         <canvas height="0" class="videoMerge" id="comp_2Merge"></canvas>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <!-- Slide 3 -->
-                                <div class="analysis-slide">
+                                <!-- <div class="analysis-slide">
                                     <div style="position: relative;">
                                         <video class="video" width="100%" id="comp_3" loop playsinline autoplay muted 
                                             src="assets/video/ready/comparison-left-2.mp4" 
@@ -282,7 +248,7 @@
                                         </video>
                                         <canvas height="0" class="videoMerge" id="comp_3Merge"></canvas>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <!-- Slide 4 -->
                                 <div class="analysis-slide">
@@ -305,12 +271,12 @@
                         </div>
 
                         <!-- 底部指示器 (增加了第4个点) -->
-                        <div class="carousel-indicators">
+                        <!-- <div class="carousel-indicators">
                             <span class="indicator active" onclick="setAnalysis(0)"></span>
                             <span class="indicator" onclick="setAnalysis(1)"></span>
                             <span class="indicator" onclick="setAnalysis(2)"></span>
                             <span class="indicator" onclick="setAnalysis(3)"></span>
-                        </div>
+                        </div> -->
                     </div> 
                     <!-- 轮播组件结束 -->
                 </div>
@@ -518,22 +484,15 @@
             <h2 class="section-title">Citation</h2>
             <div class="citation-box">
                 <pre><code>
-@article{depthanything3,
-  title={Depth Anything 3: recovering the visual space from any views},
-  author={Haotong Lin and Sili Chen and Jun Hao Liew and Donny Y. Chen and Zhenyu Li and Guang Shi and Jiashi Feng and Bingyi Kang},
-  journal={arXiv preprint arXiv:2511.10647},
-  year={2025}
+@article{metricanything2026,
+    title={Metric Anything: Scaling Depth Pretraining with Noisy Heterogeneous Sources},
+    author={Metric Anything Team},
+    journal={arXiv preprint},
+    year={2026}
 }</code></pre>
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <!-- <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Depth Anything 3. All rights reserved.</p>
-        </div>
-    </footer> -->
 
     <script src="script.js"></script>
     

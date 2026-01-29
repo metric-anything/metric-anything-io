@@ -1,45 +1,74 @@
-// Theme toggle disabled - only light mode supported
-// document.addEventListener('DOMContentLoaded', function() {
-//     const themeBtn = document.getElementById('theme-btn');
-//     const body = document.body;
-//     
-//     function getSystemTheme() {
-//         return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-//     }
-//     
-//     const savedTheme = localStorage.getItem('theme');
-//     const initialTheme = savedTheme || getSystemTheme();
-//     
-//     body.setAttribute('data-theme', initialTheme);
-//     updateThemeIcon(initialTheme);
-//     
-//     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-//         if (!localStorage.getItem('theme')) {
-//             const newTheme = e.matches ? 'dark' : 'light';
-//             body.setAttribute('data-theme', newTheme);
-//             updateThemeIcon(newTheme);
-//         }
-//     });
-//     
-//     themeBtn.addEventListener('click', function() {
-//         const currentTheme = body.getAttribute('data-theme');
-//         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-//         
-//         body.setAttribute('data-theme', newTheme);
-//         localStorage.setItem('theme', newTheme);
-//         updateThemeIcon(newTheme);
-//     });
-//     
-//     function updateThemeIcon(theme) {
-//         const icon = themeBtn.querySelector('i');
-//         icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
-//     }
-// });
 
 // Results 区域轮播功能 (第一个 applications section)
 let currentApplication = 0;
 let applicationSlides = null;
 let applicationIndicators = null;
+
+
+// 1. 初始化变量
+const analysisSlides = document.querySelectorAll('.analysis-slide');
+const analysisIndicators = document.querySelectorAll('.analysis-carousel .indicator'); // 修正选择器
+let currentAnalysis = 0;
+
+// 2. 切换函数 (核心修改：添加了 resizeAndPlay 调用)
+function changeAnalysis(direction) {
+    if (analysisSlides.length === 0) return;
+
+    // 移除当前状态
+    analysisSlides[currentAnalysis].classList.remove('active');
+    if (analysisIndicators[currentAnalysis]) {
+        analysisIndicators[currentAnalysis].classList.remove('active');
+    }
+    
+    // 计算新索引
+    currentAnalysis += direction;
+    if (currentAnalysis >= analysisSlides.length) {
+        currentAnalysis = 0;
+    } else if (currentAnalysis < 0) {
+        currentAnalysis = analysisSlides.length - 1;
+    }
+    
+    // 激活新状态
+    const nextSlide = analysisSlides[currentAnalysis];
+    nextSlide.classList.add('active');
+    if (analysisIndicators[currentAnalysis]) {
+        analysisIndicators[currentAnalysis].classList.add('active');
+    }
+
+    // 【关键修复】唤醒新 Slide 里的 Canvas
+    const video = nextSlide.querySelector('video');
+    if (video) {
+        // 强制重绘，解决 display: none 导致的宽高达0问题
+        resizeAndPlay(video); 
+    }
+}
+
+// 3. 点击圆点切换
+function setAnalysis(index) {
+    if (analysisSlides.length === 0 || index === currentAnalysis) return;
+
+    // 移除旧的
+    analysisSlides[currentAnalysis].classList.remove('active');
+    if (analysisIndicators[currentAnalysis]) {
+        analysisIndicators[currentAnalysis].classList.remove('active');
+    }
+    
+    // 更新索引
+    currentAnalysis = index;
+    
+    // 激活新的
+    const nextSlide = analysisSlides[currentAnalysis];
+    nextSlide.classList.add('active');
+    if (analysisIndicators[currentAnalysis]) {
+        analysisIndicators[currentAnalysis].classList.add('active');
+    }
+
+    // 【关键修复】唤醒
+    const video = nextSlide.querySelector('video');
+    if (video) {
+        resizeAndPlay(video);
+    }
+}
 
 // 初始化 Results 轮播功能
 function initApplications() {
@@ -148,10 +177,10 @@ if (document.readyState === 'loading') {
 // 确认 script.js 已加载
 console.log('script.js 已加载 - setAbility 已定义:', typeof window.setAbility);
 
-// 技术分析轮播功能
-let currentAnalysis = 0;
-const analysisSlides = document.querySelectorAll('.analysis-slide');
-const analysisIndicators = document.querySelectorAll('.analysis .indicator');
+// // 技术分析轮播功能
+// let currentAnalysis = 0;
+// const analysisSlides = document.querySelectorAll('.analysis-slide');
+// const analysisIndicators = document.querySelectorAll('.analysis .indicator');
 
 function changeAnalysis(direction) {
     analysisSlides[currentAnalysis].classList.remove('active');
@@ -686,84 +715,3 @@ Number.prototype.clamp = function(min, max) {
           requestAnimationFrame(drawLoop);
       } 
   }
-
-  function changeAnalysis(direction) {
-    // 安全检查：防止页面还没加载完就报错
-    if (analysisSlides.length === 0) return;
-
-    // A. 移除当前激活状态
-    analysisSlides[currentAnalysis].classList.remove('active');
-    if (analysisIndicators.length > 0) {
-        analysisIndicators[currentAnalysis].classList.remove('active');
-    }
-    
-    // B. 计算新索引
-    currentAnalysis += direction;
-    
-    // 循环逻辑
-    if (currentAnalysis >= analysisSlides.length) {
-        currentAnalysis = 0;
-    } else if (currentAnalysis < 0) {
-        currentAnalysis = analysisSlides.length - 1;
-    }
-    
-    // C. 激活新状态
-    var nextSlide = analysisSlides[currentAnalysis];
-    nextSlide.classList.add('active');
-    if (analysisIndicators.length > 0) {
-        analysisIndicators[currentAnalysis].classList.add('active');
-    }
-
-    // =========================================================
-    // D. 【关键修复】唤醒新滑块里的视频对比组件
-    //    这一步让键盘/滑动切换后，画面能立刻显示出来
-    // =========================================================
-    var video = nextSlide.querySelector('video');
-    if (video) {
-        // 只有当 video 存在且是对比视频时（有 resizeAndPlay 逻辑）才执行
-        // 这里的 resizeAndPlay 就是下面定义的那个函数
-        resizeAndPlay(video); 
-    }
-}
-
-// 点击圆点直接跳转的函数
-function setAnalysis(index) {
-    if (index === currentAnalysis) return;
-    var direction = index - currentAnalysis;
-    changeAnalysis(direction); // 复用上面的逻辑
-}
-
-/* =========================================
-   3. 你原有的事件监听 (保持不变，完全兼容)
-   ========================================= */
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowLeft') {
-        // changeApplication(-1); // 如果你有这个函数就保留
-        changeAnalysis(-1);    // 这里会自动调用上面修改后的新逻辑
-    } else if (e.key === 'ArrowRight') {
-        // changeApplication(1); // 如果你有这个函数就保留
-        changeAnalysis(1);     // 这里会自动调用上面修改后的新逻辑
-    }
-});
-
-// 滑动逻辑 (保持不变)
-// 注意：确保 touchStartX 和 touchEndX 变量在你的代码其他地方已经定义并赋值了
-function handleSwipe() {
-    const swipeThreshold = 50;
-    // 假设你在 touchstart 和 touchend 事件中更新了 touchStartX/End
-    if (typeof touchStartX === 'undefined' || typeof touchEndX === 'undefined') return;
-
-    const diff = touchStartX - touchEndX;
-    
-    if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0) {
-            // 向左滑动 -> 下一个
-            // changeApplication(1);
-            changeAnalysis(1); 
-        } else {
-            // 向右滑动 -> 上一个
-            // changeApplication(-1);
-            changeAnalysis(-1);
-        }
-    }
-}
