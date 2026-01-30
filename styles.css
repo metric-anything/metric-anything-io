@@ -123,6 +123,14 @@ section {
     background: transparent;
 }
 
+/* 交互式对比视频容器 */
+.result-video-small > div {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
 /* 紧凑型视频容器 - 用于缩小视频显示 */
 .result-video-compact {
     max-width: 800px; /* 限制最大宽度为 800px */
