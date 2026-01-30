@@ -156,6 +156,33 @@ section {
     box-sizing: border-box;
 }
 
+/* 输入/输出视频容器内的视频保持原始比例 */
+.input-output-video-container .result-video-small {
+    aspect-ratio: auto !important; /* 移除固定宽高比，让视频保持原始比例 */
+    height: auto !important; /* 高度自适应 */
+    overflow: visible; /* 允许视频完整显示 */
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+}
+
+.input-output-video-container .result-video-small video {
+    width: 100%;
+    height: auto !important; /* 高度根据视频原始比例自适应 */
+    object-fit: contain !important; /* 保持原始比例，不裁剪 */
+    display: block;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+}
+
+/* 确保 canvas 也保持原始比例 */
+.input-output-video-container .result-video-small .videoMerge {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+}
+
 .analysis-carousel {
     width: 100%;
     padding: 0 20px 30px 20px; /* 给轮播器内部一点间距 */
@@ -1398,6 +1425,11 @@ section {
         height: 70px;
     }
     
+    .thumbnail-label {
+        padding: 6px;
+        font-size: 0.7rem;
+    }
+    
     /* Input/Output Video Container responsive */
     .input-output-video-container {
         gap: 20px;
@@ -1407,11 +1439,6 @@ section {
     .video-label {
         font-size: 0.9rem;
         padding: 6px 12px;
-    }
-    
-    .thumbnail-label {
-        padding: 6px;
-        font-size: 0.7rem;
     }
     
     .main-display-container {
