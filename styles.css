@@ -807,20 +807,19 @@ section {
 
 .comparison-section {
     padding: 40px 0;
-    background: var(--bg-secondary);
-    /* background: var(--bg-primary); */
+    background: var(--bg-secondary); /* 浅灰背景 */
 }
 
-/* Section Divider - 用于区分不同的section */
-.section-divider {
-    width: 100%;
-    height: 3px;
-    background: var(--border-color);
-    margin: 10px 0;
-    max-width: 2000px;
-    margin-left: auto;
-    margin-right: auto;
+.comparison-section .result-item {
+    background: var(--bg-primary); /* 纯白卡片 */
+    box-shadow: var(--shadow-xl);  /* 可以稍微加重一点阴影，让白卡片在灰底上更突显 */
+    border: 1px solid var(--border-color);
 }
+
+.comparison-section .result-image-large {
+    background: transparent; 
+}
+
 
 .results-list {
     display: flex;
