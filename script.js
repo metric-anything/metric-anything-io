@@ -717,11 +717,19 @@ Number.prototype.clamp = function(min, max) {
   }
 
 // Comparison Image Gallery - 切换对比图片
-function switchComparisonImage(element) {
+window.switchComparisonImage = function(element) {
     const imgSrc = element.getAttribute('data-img-src');
     const mainImg = document.getElementById('comparisonMainImg');
     
-    if (!mainImg || !imgSrc) return;
+    if (!mainImg) {
+        console.error('找不到主图元素 comparisonMainImg');
+        return;
+    }
+    
+    if (!imgSrc) {
+        console.error('缩略图缺少 data-img-src 属性');
+        return;
+    }
     
     // 更新主图
     mainImg.src = imgSrc;
@@ -732,4 +740,6 @@ function switchComparisonImage(element) {
         thumb.classList.remove('active');
     });
     element.classList.add('active');
+    
+    console.log('切换图片到:', imgSrc);
 }
