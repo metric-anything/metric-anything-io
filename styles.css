@@ -121,12 +121,16 @@ section {
     border: none; /* 移除边框让视觉更干净 */
     box-shadow: none; /* 移除内部阴影 */
     background: transparent;
+    display: inline-block; /* 让容器高度贴合内容 */
+    vertical-align: top; /* 防止底部空白 */
 }
 
 /* 紧凑型视频容器 - 用于缩小视频显示 */
 .result-video-compact {
     max-width: 800px; /* 限制最大宽度为 800px */
     margin: 20px auto; /* 居中显示 */
+    display: inline-block; /* 让容器高度贴合内容 */
+    vertical-align: top; /* 防止底部空白 */
 }
 
 /* Input/Output Video Container - 上下布局 */
@@ -164,6 +168,9 @@ section {
     width: 100%;
     max-width: 100%;
     margin: 0;
+    display: inline-block; /* 让容器高度贴合内容 */
+    vertical-align: top; /* 防止底部空白 */
+    padding: 0; /* 移除所有内边距 */
 }
 
 .input-output-video-container .result-video-small video {
@@ -181,6 +188,17 @@ section {
     width: 100% !important;
     height: auto !important;
     display: block;
+    margin: 0; /* 移除所有外边距 */
+    padding: 0; /* 移除所有内边距 */
+}
+
+/* 确保 canvas 容器 div 也贴合内容 */
+.input-output-video-container .result-video-small > div {
+    display: inline-block; /* 让容器高度贴合内容 */
+    width: 100%;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
 }
 
 .analysis-carousel {
@@ -1032,6 +1050,9 @@ section {
     border-radius: 12px;
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
+    display: inline-block; /* 让容器高度贴合内容 */
+    vertical-align: top; /* 防止底部空白 */
+    padding: 0; /* 移除内边距 */
 }
 
 .result-video-small video {
@@ -1042,6 +1063,8 @@ section {
     position: relative !important;  /* 覆盖 .app-video 的绝对定位 */
     top: auto !important;
     left: auto !important;
+    margin: 0; /* 移除外边距 */
+    padding: 0; /* 移除内边距 */
 }
 
 /* 图片容器 - 更大的显示区域 */
