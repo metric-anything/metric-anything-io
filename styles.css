@@ -805,6 +805,12 @@ section {
     background: var(--bg-primary);
 }
 
+.comparison-section {
+    padding: 40px 0;
+    background: var(--bg-secondary);
+    /* background: var(--bg-primary); */
+}
+
 /* Section Divider - 用于区分不同的section */
 .section-divider {
     width: 100%;
