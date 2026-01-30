@@ -116,13 +116,15 @@ section {
 .result-video-small {
     width: 100%; /* 填满父容器 */
     max-width: 100%; /* 移除之前的 1200px 限制 */
-    margin: 20px 0; /* 上下间距 */
+    margin: 20px auto; /* 上下间距，左右居中 */
     border-radius: 12px;
     border: none; /* 移除边框让视觉更干净 */
     box-shadow: none; /* 移除内部阴影 */
     background: transparent;
-    display: inline-block; /* 让容器高度贴合内容 */
-    vertical-align: top; /* 防止底部空白 */
+    display: block; /* 改为 block */
+    line-height: 0; /* 移除行高，防止底部空白 */
+    font-size: 0; /* 移除字体大小，防止底部空白 */
+    text-align: center; /* 让内容居中 */
 }
 
 /* 紧凑型视频容器 - 用于缩小视频显示 */
@@ -167,10 +169,12 @@ section {
     overflow: visible; /* 允许视频完整显示 */
     width: 100%;
     max-width: 100%;
-    margin: 0;
-    display: inline-block; /* 让容器高度贴合内容 */
-    vertical-align: top; /* 防止底部空白 */
+    margin: 0 auto; /* 左右居中 */
+    display: block; /* 改为 block */
     padding: 0; /* 移除所有内边距 */
+    line-height: 0; /* 移除行高，防止底部空白 */
+    font-size: 0; /* 移除字体大小，防止底部空白 */
+    text-align: center; /* 让内容居中 */
 }
 
 .input-output-video-container .result-video-small video {
@@ -181,24 +185,39 @@ section {
     position: relative !important;
     top: auto !important;
     left: auto !important;
-}
-
-/* 确保 canvas 也保持原始比例 */
-.input-output-video-container .result-video-small .videoMerge {
-    width: 100% !important;
-    height: auto !important;
-    display: block;
-    margin: 0; /* 移除所有外边距 */
-    padding: 0; /* 移除所有内边距 */
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 0 !important;
 }
 
 /* 确保 canvas 容器 div 也贴合内容 */
 .input-output-video-container .result-video-small > div {
-    display: inline-block; /* 让容器高度贴合内容 */
+    display: inline-block; /* 改为 inline-block 以便居中 */
     width: 100%;
-    vertical-align: top;
+    max-width: 100%;
+    margin: 0 auto; /* 左右居中 */
+    padding: 0;
+    line-height: 0; /* 移除行高，防止底部空白 */
+    font-size: 0; /* 移除字体大小，防止底部空白 */
+    text-align: center; /* 让内容居中 */
+}
+
+/* 确保 video 元素不占空间（因为被 canvas 替代） */
+.input-output-video-container .result-video-small .video {
     margin: 0;
     padding: 0;
+    line-height: 0;
+    display: block;
+}
+
+/* 确保 canvas 完全贴合，无额外空间 */
+.input-output-video-container .result-video-small .videoMerge {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important; /* 左右居中 */
+    padding: 0 !important;
+    line-height: 0 !important;
 }
 
 .analysis-carousel {
@@ -1042,7 +1061,7 @@ section {
     width: calc(100% - 60px);  /* 减去左右padding */
     /* max-width: 800px;  调大视频尺寸 */
     max-width: 1200px;  /* 调大视频尺寸 */
-    margin: 20px auto 30px;
+    margin: 20px auto 30px; /* 左右居中 */
     aspect-ratio: auto; /* 移除固定宽高比，保持视频原始比例 */
     height: auto; /* 高度自适应 */
     overflow: visible; /* 允许视频完整显示 */
@@ -1050,9 +1069,11 @@ section {
     border-radius: 12px;
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
-    display: inline-block; /* 让容器高度贴合内容 */
-    vertical-align: top; /* 防止底部空白 */
+    display: block; /* 改为 block 以便居中 */
     padding: 0; /* 移除内边距 */
+    line-height: 0; /* 移除行高，防止底部空白 */
+    font-size: 0; /* 移除字体大小，防止底部空白 */
+    text-align: center; /* 让内容居中 */
 }
 
 .result-video-small video {
@@ -1063,7 +1084,7 @@ section {
     position: relative !important;  /* 覆盖 .app-video 的绝对定位 */
     top: auto !important;
     left: auto !important;
-    margin: 0; /* 移除外边距 */
+    margin: 0 auto; /* 左右居中 */
     padding: 0; /* 移除内边距 */
 }
 
