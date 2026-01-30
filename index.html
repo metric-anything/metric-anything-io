@@ -276,24 +276,41 @@
                     </div>
                 </div>
 
-                <!-- Result Item 2: Blind spot completion - Interactive Comparison Video -->
+                <!-- Result Item 2: Blind spot completion - Input/Output Video Comparison -->
                 <div class="result-item">
                     <div class="result-info">
                         <h3>Blind spot completion test for left and right views uncovered by LiDAR</h3>
                         <p>
-                            <span style="color:#888; font-size: 0.9em;">Drag the slider to compare left and right views</span>
+                            <span style="color:#888; font-size: 0.9em;">Input video (top) and output comparison (bottom). Drag the slider to compare left and right views.</span>
                         </p>
                     </div>
 
-                    <!-- 交互式对比视频 -->
-                    <div class="result-video-small">
-                        <div style="position: relative;">
-                            <video class="video" width="100%" id="blindspot_comparison" loop playsinline autoplay muted 
-                                src="assets/video/ready/comparison-right-2.mp4" 
-                                onplay="resizeAndPlay(this)" 
-                                style="height: 0px; opacity: 0;">
-                            </video>
-                            <canvas height="0" class="videoMerge" id="blindspot_comparisonMerge"></canvas>
+                    <!-- Input/Output Video Container -->
+                    <div class="input-output-video-container">
+                        <!-- Input Video (Model Input) -->
+                        <div class="video-section">
+                            <div class="video-label">Input</div>
+                            <div class="result-video-small">
+                                <video playsinline muted loop autoplay controls class="app-video lazy-video" preload="metadata" data-src="assets/video/ready/rgb-lidar-right-2.mp4">
+                                    <source data-src="assets/video/ready/rgb-lidar-right-2.mp4" type="video/mp4">
+                                    Your browser does not support video playback.
+                                </video>
+                            </div>
+                        </div>
+
+                        <!-- Output Video (Interactive Comparison) -->
+                        <div class="video-section">
+                            <div class="video-label">Output</div>
+                            <div class="result-video-small">
+                                <div style="position: relative;">
+                                    <video class="video" width="100%" id="blindspot_comparison" loop playsinline autoplay muted 
+                                        src="assets/video/ready/comparison-right-2.mp4" 
+                                        onplay="resizeAndPlay(this)" 
+                                        style="height: 0px; opacity: 0;">
+                                    </video>
+                                    <canvas height="0" class="videoMerge" id="blindspot_comparisonMerge"></canvas>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

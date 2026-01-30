@@ -129,6 +129,33 @@ section {
     margin: 20px auto; /* 居中显示 */
 }
 
+/* Input/Output Video Container - 上下布局 */
+.input-output-video-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.video-section {
+    width: 100%;
+}
+
+.video-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 8px 16px;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .analysis-carousel {
     width: 100%;
     padding: 0 20px 30px 20px; /* 给轮播器内部一点间距 */
@@ -1369,6 +1396,17 @@ section {
     
     .comparison-thumbnail-gallery .thumbnail-item img {
         height: 70px;
+    }
+    
+    /* Input/Output Video Container responsive */
+    .input-output-video-container {
+        gap: 20px;
+        padding: 0 20px;
+    }
+    
+    .video-label {
+        font-size: 0.9rem;
+        padding: 6px 12px;
     }
     
     .thumbnail-label {
