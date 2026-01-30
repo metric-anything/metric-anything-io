@@ -1546,3 +1546,40 @@ section {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent-secondary);
 }
+
+
+
+/* =========================================
+   修复：Blind Spot Comparison 底部空白问题
+   ========================================= */
+
+/* 1. 针对隐藏的源视频 (class="video") 进行特殊处理 */
+/* 必须使用 !important 覆盖之前全局设置的 height: auto 和 position: relative */
+.input-output-video-container .result-video-small video.video {
+    position: absolute !important; /* 绝对定位，使其脱离文档流，不再占据空间 */
+    top: 0;
+    left: 0;
+    width: 100% !important;        /* 保持宽度，确保 JS 能正确读取分辨率 */
+    height: 0 !important;          /* 强制高度为 0 */
+    opacity: 0 !important;         /* 确保不可见 */
+    z-index: -1;                   /* 放在最底层 */
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: none;          /* 禁止鼠标交互 */
+}
+
+/* 2. 确保 Canvas 正常显示 */
+.input-output-video-container .result-video-small .videoMerge {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    z-index: 10;
+}
+
+/* 3. 确保包裹它们的相对定位容器表现正常 */
+.input-output-video-container .result-video-small > div {
+    display: block; /* 确保是块级元素 */
+    width: 100%;
+    line-height: 0; /* 消除行内元素间隙 */
+}
