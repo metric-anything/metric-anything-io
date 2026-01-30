@@ -101,7 +101,7 @@ section {
 
 /* 2. 让 Results 区域宽度对齐 Abstract/Pipeline */
 .results-list {
-    max-width: 1200px; /* 与 abstract-content 保持一致 */
+    max-width: 900px; /* 从 1200px 缩小到 900px，与 abstract-content 保持一致 */
     margin: 0 auto;
     width: 100%;
 }
@@ -402,7 +402,7 @@ section {
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
     text-align: center;
-    max-width: 1200px;
+    max-width: 900px; /* 从 1200px 缩小到 900px，与 abstract-content 保持一致 */
     margin: 0 auto 30px auto;
 }
 
@@ -435,7 +435,7 @@ section {
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
     text-align: center;
-    max-width: 1200px;
+    max-width: 900px; /* 从 1200px 缩小到 900px，使内容更紧凑 */
     margin: 0 auto 30px auto;
 }
 
