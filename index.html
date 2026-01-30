@@ -168,6 +168,91 @@
     </section>
 
 
+    <section id="interactive-examples" class="interactive-results">
+        <div class="container">
+          <h2 class="section-title">Interactive Demos</h2>
+          
+          <!-- Main Display Area -->
+          <div class="main-display-container">
+            <!-- Loading Indicator for iframe -->
+            <div class="iframe-loader hidden" id="iframeLoader">
+              <div class="loader-spinner"></div>
+              <div class="loader-text">Loading interactive demo...</div>
+            </div>
+            <iframe 
+              id="mainIframe" 
+              class="main-iframe loaded"
+              src="glb-viewer.html?src=assets/interactive/01/mesh.glb">
+            </iframe>
+          </div>
+          
+          <!-- Thumbnail Gallery -->
+          <div class="thumbnail-gallery">
+            <!-- Local Interactive Examples -->
+            <div class="thumbnail-item active" 
+                data-src="glb-viewer.html?src=assets/interactive/01/mesh.glb"
+                onclick="switchIframe(this)">
+              <img src="assets/interactive/01/image.jpg" alt="Example 1" onerror="this.src='assets/placeholder.svg'">
+            </div>
+
+            <div class="thumbnail-item" 
+                data-src="glb-viewer.html?src=assets/interactive/02/mesh.glb"
+                onclick="switchIframe(this)">
+              <img src="assets/interactive/02/image.jpg" alt="Example 2" onerror="this.src='assets/placeholder.svg'">
+            </div>
+
+            <div class="thumbnail-item" 
+                data-src="glb-viewer.html?src=assets/interactive/03/mesh.glb"
+                onclick="switchIframe(this)">
+              <img src="assets/interactive/03/image.jpg" alt="Example 3" onerror="this.src='assets/placeholder.svg'">
+            </div>
+
+            <div class="thumbnail-item" 
+                data-src="glb-viewer.html?src=assets/interactive/04/mesh.glb"
+                onclick="switchIframe(this)">
+              <img src="assets/interactive/04/image.jpg" alt="Example 4" onerror="this.src='assets/placeholder.svg'">
+            </div>
+            
+            <div class="thumbnail-item" 
+                data-src="glb-viewer.html?src=assets/interactive/more/robo-arm/mesh.glb"
+                onclick="switchIframe(this)">
+              <img src="assets/interactive/more/robo-arm/image.jpg" alt="Example 5" onerror="this.src='assets/placeholder.svg'">
+            </div>
+
+            <div class="thumbnail-item" 
+                data-src="glb-viewer.html?src=assets/interactive/more/006/mesh.glb"
+                onclick="switchIframe(this)">
+              <img src="assets/interactive/more/006/image.jpg" alt="Example 6" onerror="this.src='assets/placeholder.svg'">
+            </div>
+
+            <div class="thumbnail-item" 
+                data-src="glb-viewer.html?src=assets/interactive/07/mesh.glb"
+                onclick="switchIframe(this)">
+              <img src="assets/interactive/07/image.jpg" alt="Example 7" onerror="this.src='assets/placeholder.svg'">
+            </div>
+
+            <div class="thumbnail-item" 
+                data-src="glb-viewer.html?src=assets/interactive/08/mesh.glb"
+                onclick="switchIframe(this)">
+              <img src="assets/interactive/08/image.jpg" alt="Example 8" onerror="this.src='assets/placeholder.svg'">
+            </div>
+
+            <div class="thumbnail-item" 
+                data-src="glb-viewer.html?src=assets/interactive/more/001/mesh.glb"
+                onclick="switchIframe(this)">
+              <img src="assets/interactive/more/001/image.jpg" alt="Example 9" onerror="this.src='assets/placeholder.svg'">
+            </div>
+
+            <div class="thumbnail-item" 
+                data-src="glb-viewer.html?src=assets/interactive/more/002/mesh.glb"
+                onclick="switchIframe(this)">
+              <img src="assets/interactive/more/002/image.jpg" alt="Example 10" onerror="this.src='assets/placeholder.svg'">
+            </div>
+          </div>
+        </div>
+    </section>
+
+    
             <!-- Results -->
     <section id="results" class="results-section">
         <div class="container">
@@ -296,7 +381,7 @@
 
                     <div class="result-info">
                         <p class="text-large">
-                        In low-light real-world deployments, our model demonstrates remarkable robustness and achieves generalizable novel view synthesis by predicting 3DGS parameters.
+                        In low-light conditions, as scene brightness drops and visual signals deteriorate, our model maintains remarkable robustness despite severe degradation.
                         </p> 
                     </div>
                     
@@ -350,6 +435,8 @@
         </div> <!-- End .container -->
     </section>
 
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
 
     <!-- Comparison -->
     <section id="comparison" class="results-section">
@@ -387,89 +474,6 @@
 
     <!-- Abilities -->
 
-    <section id="interactive-examples" class="interactive-results">
-        <div class="container">
-          <h2 class="section-title">Interactive Demos</h2>
-          
-          <!-- Main Display Area -->
-          <div class="main-display-container">
-            <!-- Loading Indicator for iframe -->
-            <div class="iframe-loader hidden" id="iframeLoader">
-              <div class="loader-spinner"></div>
-              <div class="loader-text">Loading interactive demo...</div>
-            </div>
-            <iframe 
-              id="mainIframe" 
-              class="main-iframe loaded"
-              src="glb-viewer.html?src=assets/interactive/01/mesh.glb">
-            </iframe>
-          </div>
-          
-          <!-- Thumbnail Gallery -->
-          <div class="thumbnail-gallery">
-            <!-- Local Interactive Examples -->
-            <div class="thumbnail-item active" 
-                data-src="glb-viewer.html?src=assets/interactive/01/mesh.glb"
-                onclick="switchIframe(this)">
-              <img src="assets/interactive/01/image.jpg" alt="Example 1" onerror="this.src='assets/placeholder.svg'">
-            </div>
-
-            <div class="thumbnail-item" 
-                data-src="glb-viewer.html?src=assets/interactive/02/mesh.glb"
-                onclick="switchIframe(this)">
-              <img src="assets/interactive/02/image.jpg" alt="Example 2" onerror="this.src='assets/placeholder.svg'">
-            </div>
-
-            <div class="thumbnail-item" 
-                data-src="glb-viewer.html?src=assets/interactive/03/mesh.glb"
-                onclick="switchIframe(this)">
-              <img src="assets/interactive/03/image.jpg" alt="Example 3" onerror="this.src='assets/placeholder.svg'">
-            </div>
-
-            <div class="thumbnail-item" 
-                data-src="glb-viewer.html?src=assets/interactive/04/mesh.glb"
-                onclick="switchIframe(this)">
-              <img src="assets/interactive/04/image.jpg" alt="Example 4" onerror="this.src='assets/placeholder.svg'">
-            </div>
-            
-            <div class="thumbnail-item" 
-                data-src="glb-viewer.html?src=assets/interactive/more/robo-arm/mesh.glb"
-                onclick="switchIframe(this)">
-              <img src="assets/interactive/more/robo-arm/image.jpg" alt="Example 5" onerror="this.src='assets/placeholder.svg'">
-            </div>
-
-            <div class="thumbnail-item" 
-                data-src="glb-viewer.html?src=assets/interactive/more/006/mesh.glb"
-                onclick="switchIframe(this)">
-              <img src="assets/interactive/more/006/image.jpg" alt="Example 6" onerror="this.src='assets/placeholder.svg'">
-            </div>
-
-            <div class="thumbnail-item" 
-                data-src="glb-viewer.html?src=assets/interactive/07/mesh.glb"
-                onclick="switchIframe(this)">
-              <img src="assets/interactive/07/image.jpg" alt="Example 7" onerror="this.src='assets/placeholder.svg'">
-            </div>
-
-            <div class="thumbnail-item" 
-                data-src="glb-viewer.html?src=assets/interactive/08/mesh.glb"
-                onclick="switchIframe(this)">
-              <img src="assets/interactive/08/image.jpg" alt="Example 8" onerror="this.src='assets/placeholder.svg'">
-            </div>
-
-            <div class="thumbnail-item" 
-                data-src="glb-viewer.html?src=assets/interactive/more/001/mesh.glb"
-                onclick="switchIframe(this)">
-              <img src="assets/interactive/more/001/image.jpg" alt="Example 9" onerror="this.src='assets/placeholder.svg'">
-            </div>
-
-            <div class="thumbnail-item" 
-                data-src="glb-viewer.html?src=assets/interactive/more/002/mesh.glb"
-                onclick="switchIframe(this)">
-              <img src="assets/interactive/more/002/image.jpg" alt="Example 10" onerror="this.src='assets/placeholder.svg'">
-            </div>
-          </div>
-        </div>
-    </section>
 
 
 
