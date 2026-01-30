@@ -820,6 +820,39 @@ section {
     background: transparent; 
 }
 
+/* Comparison Main Display Area */
+.comparison-main-display {
+    margin: 20px 0 30px;
+}
+
+.comparison-main-display .result-image-large {
+    margin: 0 auto;
+    transition: opacity 0.3s ease;
+}
+
+.comparison-main-display .result-image-large img {
+    transition: opacity 0.3s ease;
+}
+
+/* Comparison Thumbnail Gallery - 复用现有样式但调整布局 */
+.comparison-thumbnail-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    max-width: 900px;
+    margin: 30px auto 0;
+    padding: 0 30px;
+}
+
+.comparison-thumbnail-gallery .thumbnail-item {
+    cursor: pointer;
+}
+
+.comparison-thumbnail-gallery .thumbnail-item.active {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
 
 .results-list {
     display: flex;
@@ -1324,6 +1357,17 @@ section {
     }
     
     .thumbnail-item img {
+        height: 70px;
+    }
+    
+    /* Comparison thumbnail gallery responsive */
+    .comparison-thumbnail-gallery {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 0 20px;
+    }
+    
+    .comparison-thumbnail-gallery .thumbnail-item img {
         height: 70px;
     }
     

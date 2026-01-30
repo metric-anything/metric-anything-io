@@ -715,3 +715,21 @@ Number.prototype.clamp = function(min, max) {
           requestAnimationFrame(drawLoop);
       } 
   }
+
+// Comparison Image Gallery - 切换对比图片
+function switchComparisonImage(element) {
+    const imgSrc = element.getAttribute('data-img-src');
+    const mainImg = document.getElementById('comparisonMainImg');
+    
+    if (!mainImg || !imgSrc) return;
+    
+    // 更新主图
+    mainImg.src = imgSrc;
+    
+    // 更新缩略图的 active 状态
+    const thumbnails = document.querySelectorAll('.comparison-thumbnail-gallery .thumbnail-item');
+    thumbnails.forEach(thumb => {
+        thumb.classList.remove('active');
+    });
+    element.classList.add('active');
+}
