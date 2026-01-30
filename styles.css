@@ -123,6 +123,12 @@ section {
     background: transparent;
 }
 
+/* 紧凑型视频容器 - 用于缩小视频显示 */
+.result-video-compact {
+    max-width: 800px; /* 限制最大宽度为 800px */
+    margin: 20px auto; /* 居中显示 */
+}
+
 .analysis-carousel {
     width: 100%;
     padding: 0 20px 30px 20px; /* 给轮播器内部一点间距 */
