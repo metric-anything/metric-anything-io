@@ -801,7 +801,8 @@ section {
 /* Results 区域 - 垂直展示 */
 .results-section {
     padding: 40px 0;
-    background: var(--bg-secondary);
+    /* background: var(--bg-secondary); */
+    background: var(--bg-primary);
 }
 
 .results-list {
@@ -812,7 +813,8 @@ section {
 
 .result-item {
     display: block;
-    background: var(--bg-primary);
+    /* background: var(--bg-primary); */
+    background: var(--bg-secondary);
     border-radius: 20px;
     overflow: hidden;
     box-shadow: var(--shadow-lg);
