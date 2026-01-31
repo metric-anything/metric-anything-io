@@ -107,6 +107,84 @@ function setApplication(index) {
     applicationIndicators[currentApplication].classList.add('active');
 }
 
+// Blind spot input/output carousel (Result Item 2)
+let currentBlindspotCase = 0;
+let blindspotSlides = null;
+let blindspotIndicators = null;
+
+function initBlindspotCarousel() {
+    blindspotSlides = document.querySelectorAll('.blindspot-carousel .application-slide');
+    blindspotIndicators = document.querySelectorAll('.blindspot-carousel .indicator');
+    console.log('Blindspot carousel 初始化:', blindspotSlides.length, 'slides,', blindspotIndicators.length, 'indicators');
+}
+
+function changeBlindspotCase(direction) {
+    if (!blindspotSlides || blindspotSlides.length === 0) return;
+
+    if (blindspotSlides[currentBlindspotCase]) {
+        blindspotSlides[currentBlindspotCase].classList.remove('active');
+    }
+    if (blindspotIndicators[currentBlindspotCase]) {
+        blindspotIndicators[currentBlindspotCase].classList.remove('active');
+    }
+
+    currentBlindspotCase += direction;
+    if (currentBlindspotCase >= blindspotSlides.length) {
+        currentBlindspotCase = 0;
+    } else if (currentBlindspotCase < 0) {
+        currentBlindspotCase = blindspotSlides.length - 1;
+    }
+
+    const nextSlide = blindspotSlides[currentBlindspotCase];
+    if (nextSlide) {
+        nextSlide.classList.add('active');
+    }
+    if (blindspotIndicators[currentBlindspotCase]) {
+        blindspotIndicators[currentBlindspotCase].classList.add('active');
+    }
+
+    // 确保切换后重新初始化当前 case 的竖直拖动条交互
+    const comparisonVideo = nextSlide ? nextSlide.querySelector('video.video') : null;
+    if (comparisonVideo && typeof resizeAndPlay === 'function') {
+        try {
+            resizeAndPlay(comparisonVideo);
+        } catch (e) {
+            console.error('resizeAndPlay in changeBlindspotCase 失败:', e);
+        }
+    }
+}
+
+function setBlindspotCase(index) {
+    if (!blindspotSlides || blindspotSlides.length === 0) return;
+    if (index === currentBlindspotCase) return;
+
+    if (blindspotSlides[currentBlindspotCase]) {
+        blindspotSlides[currentBlindspotCase].classList.remove('active');
+    }
+    if (blindspotIndicators[currentBlindspotCase]) {
+        blindspotIndicators[currentBlindspotCase].classList.remove('active');
+    }
+
+    currentBlindspotCase = index;
+
+    const nextSlide = blindspotSlides[currentBlindspotCase];
+    if (nextSlide) {
+        nextSlide.classList.add('active');
+    }
+    if (blindspotIndicators[currentBlindspotCase]) {
+        blindspotIndicators[currentBlindspotCase].classList.add('active');
+    }
+
+    const comparisonVideo = nextSlide ? nextSlide.querySelector('video.video') : null;
+    if (comparisonVideo && typeof resizeAndPlay === 'function') {
+        try {
+            resizeAndPlay(comparisonVideo);
+        } catch (e) {
+            console.error('resizeAndPlay in setBlindspotCase 失败:', e);
+        }
+    }
+}
+
 // Abilities 区域按钮切换功能 (abilities-tabs section)
 let currentAbility = 0;
 let abilitySlides = null;
@@ -164,6 +242,7 @@ function initAllCarousels() {
     console.log('开始初始化所有轮播...');
     initApplications();
     initAbilities();
+    initBlindspotCarousel();
     console.log('所有轮播初始化完成');
     console.log('setAbility 函数状态:', typeof window.setAbility);
 }
@@ -176,37 +255,6 @@ if (document.readyState === 'loading') {
 
 // 确认 script.js 已加载
 console.log('script.js 已加载 - setAbility 已定义:', typeof window.setAbility);
-
-// // 技术分析轮播功能
-// let currentAnalysis = 0;
-// const analysisSlides = document.querySelectorAll('.analysis-slide');
-// const analysisIndicators = document.querySelectorAll('.analysis .indicator');
-
-function changeAnalysis(direction) {
-    analysisSlides[currentAnalysis].classList.remove('active');
-    analysisIndicators[currentAnalysis].classList.remove('active');
-    
-    currentAnalysis += direction;
-    
-    if (currentAnalysis >= analysisSlides.length) {
-        currentAnalysis = 0;
-    } else if (currentAnalysis < 0) {
-        currentAnalysis = analysisSlides.length - 1;
-    }
-    
-    analysisSlides[currentAnalysis].classList.add('active');
-    analysisIndicators[currentAnalysis].classList.add('active');
-}
-
-function setAnalysis(index) {
-    analysisSlides[currentAnalysis].classList.remove('active');
-    analysisIndicators[currentAnalysis].classList.remove('active');
-    
-    currentAnalysis = index;
-    
-    analysisSlides[currentAnalysis].classList.add('active');
-    analysisIndicators[currentAnalysis].classList.add('active');
-}
 
 // Smooth scroll navigation with navbar offset
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -610,30 +658,23 @@ function handleSwipe() {
 
 
 
-// ====== 这里是你要添加进去的代码 ======
-
-// 1. 先定义 clamp 工具函数（防止计算溢出）
 Number.prototype.clamp = function(min, max) {
     return Math.min(Math.max(this, min), max);
   };
   
-  // 2. 定义核心入口函数
-  // 这个函数名 resizeAndPlay 必须和 HTML 里的 onplay="resizeAndPlay(this)" 保持一致
   function resizeAndPlay(element) {
     var cv = document.getElementById(element.id + "Merge");
-    // 确保画布存在
     if (!cv) return; 
   
     cv.width = element.videoWidth / 2;
     cv.height = element.videoHeight;
     
     element.play();
-    element.style.height = "0px"; // 隐藏原始视频
+    element.style.height = "0px";
     
     playVids(element.id);
   }
   
-  // 3. 定义绘制循环逻辑
   function playVids(videoId) {
       var videoMerge = document.getElementById(videoId + "Merge");
       var vid = document.getElementById(videoId);
@@ -661,16 +702,12 @@ Number.prototype.clamp = function(min, max) {
           videoMerge.addEventListener("touchmove",  trackLocationTouch, false);
   
           function drawLoop() {
-              // 这里放之前的 drawImage 和 绘制箭头的所有代码
-              // ... (代码略，保持原样即可) ...
-              
                mergeContext.drawImage(vid, 0, 0, vidWidth, vidHeight, 0, 0, vidWidth, vidHeight);
                var colStart = (vidWidth * position).clamp(0.0, vidWidth);
                var colWidth = (vidWidth - (vidWidth * position)).clamp(0.0, vidWidth);
                mergeContext.drawImage(vid, colStart+vidWidth, 0, colWidth, vidHeight, colStart, 0, colWidth, vidHeight);
                requestAnimationFrame(drawLoop);
   
-               // 绘制箭头的代码块...
                var arrowLength = 0.09 * vidHeight;
                var arrowheadWidth = 0.025 * vidHeight;
                var arrowheadLength = 0.04 * vidHeight;
@@ -678,13 +715,11 @@ Number.prototype.clamp = function(min, max) {
                var arrowWidth = 0.007 * vidHeight;
                var currX = vidWidth * position;
   
-               // Draw circle
                mergeContext.beginPath();
                mergeContext.arc(currX, arrowPosY, arrowLength*0.7, 0, Math.PI * 2, false);
                mergeContext.fillStyle = "#FFD79340";
                mergeContext.fill();
   
-               // Draw border
                mergeContext.beginPath();
                mergeContext.moveTo(vidWidth*position, 0);
                mergeContext.lineTo(vidWidth*position, vidHeight);
@@ -716,7 +751,7 @@ Number.prototype.clamp = function(min, max) {
       } 
   }
 
-// Comparison Image Gallery - 切换对比图片
+// Comparison Image Gallery 
 window.switchComparisonImage = function(element) {
     const imgSrc = element.getAttribute('data-img-src');
     const mainImg = document.getElementById('comparisonMainImg');
@@ -731,10 +766,8 @@ window.switchComparisonImage = function(element) {
         return;
     }
     
-    // 更新主图
     mainImg.src = imgSrc;
     
-    // 更新缩略图的 active 状态
     const thumbnails = document.querySelectorAll('.comparison-thumbnail-gallery .thumbnail-item');
     thumbnails.forEach(thumb => {
         thumb.classList.remove('active');

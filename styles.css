@@ -1,4 +1,3 @@
-/* 全局样式 */
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +5,6 @@
 }
 
 :root {
-    /* 浅色主题 */
     --bg-primary: #ffffff;
     --bg-secondary: #f8fafc;
     --bg-tertiary: #f1f5f9;
@@ -60,48 +58,39 @@ section {
 
 
 
-/* 视频对比的核心样式 */
 .videoMerge {
     position: relative;
     top: 0;
     left: 0;
     z-index: 10;
-    width: 100%; /* 确保填满父容器 */
+    width: 100%;
     height: auto;
     display: block;
     margin: 0 auto;
     background-size: cover;
-    cursor: cell; /* 鼠标放上去显示特定图标，可选 col-resize */
+    cursor: cell;
 }
 
-/* 确保原始视频不占位 */
 .video {
     width: 100%;
-    /* height 由 JS 控制设为 0 */
 }
 
 
 
-/* =========================================
-   新增/修改的样式：Teaser 和 宽度对齐
-   ========================================= */
-
-/* 1. Teaser 视频的留白处理 */
 .hero-body {
-    padding: 40px; /* 增加四周留白 */
-    background: var(--bg-tertiary); /* 保持背景色 */
+    padding: 40px;
+    background: var(--bg-tertiary);
     border-radius: 20px;
 }
 #teaser {
     width: 100%;
     height: auto;
-    border-radius: 12px; /* 视频本身的圆角 */
+    border-radius: 12px;
     box-shadow: var(--shadow-md);
 }
 
-/* 2. 让 Results 区域宽度对齐 Abstract/Pipeline */
 .results-list {
-    max-width: 900px; /* 从 1200px 缩小到 900px，与 abstract-content 保持一致 */
+    max-width: 900px;
     margin: 0 auto;
     width: 100%;
 }
@@ -109,78 +98,80 @@ section {
 .result-item {
     width: 100%;
     margin: 0;
-    /* 移除之前的固定宽度限制，让它填满 results-list */
 }
 
-/* 3. 视频容器填满 Result Item */
 .result-video-small {
-    width: 100%; /* 填满父容器 */
-    max-width: 100%; /* 移除之前的 1200px 限制 */
-    margin: 20px auto; /* 上下间距，左右居中 */
+    width: 100%;
+    max-width: 100%;
+    margin: 10px auto;
     border-radius: 12px;
-    border: none; /* 移除边框让视觉更干净 */
-    box-shadow: none; /* 移除内部阴影 */
+    border: none;
+    box-shadow: none;
     background: transparent;
-    display: block; /* 改为 block */
-    line-height: 0; /* 移除行高，防止底部空白 */
-    font-size: 0; /* 移除字体大小，防止底部空白 */
-    text-align: center; /* 让内容居中 */
+    display: block;
+    line-height: 0;
+    font-size: 0;
+    text-align: center;
 }
 
-/* 紧凑型视频容器 - 用于缩小视频显示 */
 .result-video-compact {
-    max-width: 800px; /* 限制最大宽度为 800px */
-    margin: 20px auto; /* 居中显示 */
-    display: inline-block; /* 让容器高度贴合内容 */
-    vertical-align: top; /* 防止底部空白 */
+    max-width: 800px;
+    margin: 10px auto;
+    display: inline-block;
+    vertical-align: top;
 }
 
-/* Input/Output Video Container - 上下布局 */
 .input-output-video-container {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 0;
     max-width: 900px;
     margin: 20px auto;
 }
 
 .video-section {
     width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .video-label {
     font-size: 1rem;
     font-weight: 600;
     color: var(--text-secondary);
-    margin-bottom: 10px;
+    margin-bottom: 0;
+    margin-top: 0;
     text-align: center;
-    padding: 8px 16px;
+    padding: 4px 16px;
     background: var(--bg-tertiary);
     border-radius: 8px;
-    display: inline-block;
+    display: block;
     width: 100%;
     box-sizing: border-box;
 }
 
-/* 输入/输出视频容器内的视频保持原始比例 */
+.input-output-video-container .video-label {
+    padding: 4px 16px;
+}
+
 .input-output-video-container .result-video-small {
-    aspect-ratio: auto !important; /* 移除固定宽高比，让视频保持原始比例 */
-    height: auto !important; /* 高度自适应 */
-    overflow: visible; /* 允许视频完整显示 */
+    aspect-ratio: auto !important;
+    height: auto !important;
+    overflow: visible;
     width: 100%;
     max-width: 100%;
-    margin: 0 auto; /* 左右居中 */
-    display: block; /* 改为 block */
-    padding: 0; /* 移除所有内边距 */
-    line-height: 0; /* 移除行高，防止底部空白 */
-    font-size: 0; /* 移除字体大小，防止底部空白 */
-    text-align: center; /* 让内容居中 */
+    margin: 0 auto;
+    display: block;
+    padding: 0;
+    line-height: 0;
+    font-size: 0;
+    text-align: center;
 }
 
 .input-output-video-container .result-video-small video {
     width: 100%;
-    height: auto !important; /* 高度根据视频原始比例自适应 */
-    object-fit: contain !important; /* 保持原始比例，不裁剪 */
+    height: auto !important;
+    object-fit: contain !important;
     display: block;
     position: relative !important;
     top: auto !important;
@@ -190,19 +181,17 @@ section {
     line-height: 0 !important;
 }
 
-/* 确保 canvas 容器 div 也贴合内容 */
 .input-output-video-container .result-video-small > div {
-    display: inline-block; /* 改为 inline-block 以便居中 */
+    display: inline-block;
     width: 100%;
     max-width: 100%;
-    margin: 0 auto; /* 左右居中 */
+    margin: 0 auto;
     padding: 0;
-    line-height: 0; /* 移除行高，防止底部空白 */
-    font-size: 0; /* 移除字体大小，防止底部空白 */
-    text-align: center; /* 让内容居中 */
+    line-height: 0;
+    font-size: 0;
+    text-align: center;
 }
 
-/* 确保 video 元素不占空间（因为被 canvas 替代） */
 .input-output-video-container .result-video-small .video {
     margin: 0;
     padding: 0;
@@ -210,19 +199,28 @@ section {
     display: block;
 }
 
-/* 确保 canvas 完全贴合，无额外空间 */
 .input-output-video-container .result-video-small .videoMerge {
     width: 100% !important;
     height: auto !important;
     display: block !important;
-    margin: 0 auto !important; /* 左右居中 */
+    margin: 0 auto !important;
     padding: 0 !important;
     line-height: 0 !important;
 }
 
+.blindspot-carousel .application-slide {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.blindspot-carousel .input-output-video-container {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .analysis-carousel {
     width: 100%;
-    padding: 0 20px 30px 20px; /* 给轮播器内部一点间距 */
+    padding: 0 20px 30px 20px;
 }
 
 .carousel-content {
@@ -232,7 +230,6 @@ section {
     background: var(--bg-tertiary);
 }
 
-/* 4. 图片容器也填满 */
 .result-image-large, 
 .result-image-middle {
     width: 100%;
@@ -243,19 +240,17 @@ section {
     border: none;
 }
 .image-with-title {
-    padding: 0 30px; /* 给内部图片一点左右边距 */
+    padding: 0 30px;
 }
 
-/* 5. 确保 Canvas 响应式 */
 .videoMerge {
-    width: 100% !important; /* 强制填满 */
+    width: 100% !important;
     height: auto !important;
     display: block;
 }
 
 
 
-/* 导航栏 */
 .navbar {
     position: fixed;
     top: 0;
@@ -402,7 +397,6 @@ section {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* 主演示视频 */
 .main-demo {
     padding: 40px 0;
     background: var(--bg-secondary);
@@ -485,7 +479,6 @@ section {
     border-radius: 3px;
 }
 
-/* TL;DR 内容 */
 .tldr-content {
     background: var(--bg-secondary);
     padding: 20px 30px;
@@ -493,7 +486,7 @@ section {
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
     text-align: center;
-    max-width: 900px; /* 从 1200px 缩小到 900px，与 abstract-content 保持一致 */
+    max-width: 900px;
     margin: 0 auto 30px auto;
 }
 
@@ -513,7 +506,6 @@ section {
     color: var(--text-primary);
 }
 
-/* Abstract 区域 */
 .abstract {
     padding: 40px 0;
     background: var(--bg-primary);
@@ -526,7 +518,7 @@ section {
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
     text-align: center;
-    max-width: 900px; /* 从 1200px 缩小到 900px，使内容更紧凑 */
+    max-width: 900px;
     margin: 0 auto 30px auto;
 }
 
@@ -547,15 +539,15 @@ section {
     color: var(--text-secondary);
 }
 
-/* 视频限制在 abstract 同款框内，不超出框 */
+
 .abstract-video-wrap {
     margin-top: 20px;
     width: 100%;
     max-width: 100%;
-    aspect-ratio: auto; /* 移除固定宽高比，保持视频原始比例 */
-    height: auto; /* 高度自适应 */
+    aspect-ratio: auto; 
+    height: auto;
     border-radius: 12px;
-    overflow: visible; /* 允许视频完整显示 */
+    overflow: visible; 
     background: var(--bg-tertiary);
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-md);
@@ -564,11 +556,10 @@ section {
 .abstract-video-wrap video {
     display: block;
     width: 100%;
-    height: auto; /* 高度根据视频原始比例自适应 */
-    object-fit: contain; /* 保持原始比例，不裁剪 */
+    height: auto;
+    object-fit: contain;
 }
 
-/* 性能对比 */
 .benchmark-chart {
     text-align: center;
     max-width: 1200px;
@@ -584,7 +575,6 @@ section {
     object-fit: cover;
 }
 
-/* 交互式结果 */
 .interactive-results {
     padding: 40px 0;
     background: var(--bg-secondary);
@@ -611,7 +601,7 @@ section {
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 1;  /* 默认显示，避免加载问题 */
+    opacity: 1;
     transition: opacity 0.5s ease;
 }
 
@@ -633,7 +623,7 @@ section {
 .iframe-loader.hidden {
     opacity: 0;
     pointer-events: none;
-    display: none;  /* 完全隐藏，不占据空间 */
+    display: none;
 }
 
 /* Thumbnail gallery */
@@ -859,17 +849,17 @@ section {
 
 .interactive-video-wrapper {
     position: relative;
-    height: auto; /* 移除固定宽高比，高度自适应 */
-    overflow: visible; /* 允许视频完整显示 */
+    height: auto;
+    overflow: visible;
 }
 
 .interactive-video {
-    position: relative; /* 改为相对定位 */
+    position: relative;
     top: auto;
     left: auto;
     width: 100%;
-    height: auto; /* 高度根据视频原始比例自适应 */
-    object-fit: contain; /* 保持原始比例，不裁剪 */
+    height: auto;
+    object-fit: contain;
     display: block;
 }
 
@@ -890,7 +880,6 @@ section {
     line-height: 1.6;
 }
 
-/* Results 区域 - 垂直展示 */
 .results-section {
     padding: 40px 0;
     /* background: var(--bg-secondary); */
@@ -899,12 +888,12 @@ section {
 
 .comparison-section {
     padding: 40px 0;
-    background: var(--bg-secondary); /* 浅灰背景 */
+    background: var(--bg-secondary);
 }
 
 .comparison-section .result-item {
-    background: var(--bg-primary); /* 纯白卡片 */
-    box-shadow: var(--shadow-xl);  /* 可以稍微加重一点阴影，让白卡片在灰底上更突显 */
+    background: var(--bg-primary);
+    box-shadow: var(--shadow-xl);
     border: 1px solid var(--border-color);
 }
 
@@ -926,7 +915,6 @@ section {
     transition: opacity 0.3s ease;
 }
 
-/* Comparison Thumbnail Gallery - 复用现有样式但调整布局 */
 .comparison-thumbnail-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -964,27 +952,31 @@ section {
 
 .result-video {
     position: relative;
-    height: auto; /* 移除固定宽高比，高度自适应 */
-    overflow: visible; /* 允许视频完整显示 */
+    height: auto;
+    overflow: visible;
     background: var(--bg-tertiary);
 }
 
 .result-video video {
-    position: relative; /* 改为相对定位 */
+    position: relative;
     top: auto;
     left: auto;
     width: 100%;
-    height: auto; /* 高度根据视频原始比例自适应 */
-    object-fit: contain; /* 保持原始比例，不裁剪 */
+    height: auto;
+    object-fit: contain;
     display: block;
 }
 
 .result-info {
-    padding: 30px;
+    padding: 30px 30px 14px 30px;
+}
+
+.image-with-title + .result-info {
+    padding-top: 14px;
 }
 
 .result-info h3 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 700;
     margin-bottom: 15px;
     color: var(--text-primary);
@@ -1000,13 +992,13 @@ section {
 }
 
 .result-subtitle .highlight-rainy {
-    color: #0ea5e9;  /* 天蓝色 - 代表雨天 */
+    color: #0ea5e9;
     font-weight: 700;
     font-style: normal;
 }
 
 .result-subtitle .highlight-night {
-    color: #8b5cf6;  /* 紫色 - 代表夜晚 */
+    color: #8b5cf6;
     font-weight: 700;
     font-style: normal;
 }
@@ -1018,19 +1010,18 @@ section {
 }
 
 .result-info p.text-large {
-    font-size: 1.4rem;  /* 更大的字体 */
-    line-height: 1.7;
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
-/* 带标题的图片容器 */
 .image-with-title {
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .image-title {
     font-size: 1.3rem;
     font-weight: 600;
-    margin: 0 auto 15px;
+    margin: 0 auto 8px;
     text-align: center;
     color: var(--text-secondary);
     font-style: italic;
@@ -1039,18 +1030,17 @@ section {
 }
 
 .image-title .highlight-rainy {
-    color: #0ea5e9;  /* 天蓝色 - 代表雨天 */
+    color: #0ea5e9;
     font-weight: 700;
     font-style: normal;
 }
 
 .image-title .highlight-night {
-    color: #8b5cf6;  /* 紫色 - 代表夜晚 */
+    color: #8b5cf6;
     font-weight: 700;
     font-style: normal;
 }
 
-/* 紧凑型结果项 - 视频在小框中 */
 .result-item-compact {
     display: flex;
     flex-direction: column;
@@ -1058,45 +1048,43 @@ section {
 }
 
 .result-video-small {
-    width: calc(100% - 60px);  /* 减去左右padding */
-    /* max-width: 800px;  调大视频尺寸 */
-    max-width: 1200px;  /* 调大视频尺寸 */
-    margin: 20px auto 30px; /* 左右居中 */
-    aspect-ratio: auto; /* 移除固定宽高比，保持视频原始比例 */
-    height: auto; /* 高度自适应 */
-    overflow: visible; /* 允许视频完整显示 */
+    width: calc(100% - 60px);
+    max-width: 1200px;
+    margin: 10px auto 30px;
+    aspect-ratio: auto;
+    height: auto;
+    overflow: visible;
     background: var(--bg-tertiary);
     border-radius: 12px;
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
-    display: block; /* 改为 block 以便居中 */
-    padding: 0; /* 移除内边距 */
-    line-height: 0; /* 移除行高，防止底部空白 */
-    font-size: 0; /* 移除字体大小，防止底部空白 */
-    text-align: center; /* 让内容居中 */
+    display: block;
+    padding: 0;
+    line-height: 0;
+    font-size: 0;
+    text-align: center;
 }
 
 .result-video-small video {
     width: 100%;
-    height: auto; /* 高度根据视频原始比例自适应 */
-    object-fit: contain; /* 保持原始比例，不裁剪 */
+    height: auto;
+    object-fit: contain;
     display: block;
-    position: relative !important;  /* 覆盖 .app-video 的绝对定位 */
+    position: relative !important;
     top: auto !important;
     left: auto !important;
-    margin: 0 auto; /* 左右居中 */
-    padding: 0; /* 移除内边距 */
+    margin: 0 auto;
+    padding: 0;
 }
 
-/* 图片容器 - 更大的显示区域 */
 .result-image-large {
-    width: calc(100% - 60px);  /* 减去左右padding */
-    max-width: 1200px;  /* 更大的图片显示区域 */
+    width: calc(100% - 60px);
+    max-width: 1200px;
     margin: 20px auto 30px;
     overflow: hidden;
     background: var(--bg-tertiary);
     border-radius: 12px;
-    box-shadow: var(--shadow-lg);  /* 更明显的阴影 */
+    box-shadow: var(--shadow-lg);
     border: 1px solid var(--border-color);
 }
 
@@ -1107,20 +1095,18 @@ section {
     display: block;
 }
 
-/* 中等尺寸图片容器 - 用于特定图片 */
 .result-image-medium {
-    max-width: 900px;  /* 比默认的1200px小 */
+    max-width: 900px;
 }
 
-/* 图片容器 - 更大的显示区域 */
 .result-image-middle {
-    width: calc(100% - 60px);  /* 减去左右padding */
-    max-width: 1200px;  /* 更大的图片显示区域 */
+    width: calc(100% - 60px);
+    max-width: 1200px;
     margin: 20px auto 30px;
     overflow: hidden;
     background: var(--bg-tertiary);
     border-radius: 12px;
-    box-shadow: var(--shadow-lg);  /* 更明显的阴影 */
+    box-shadow: var(--shadow-lg);
     border: 1px solid var(--border-color);
 }
 
@@ -1131,7 +1117,6 @@ section {
     display: block;
 }
 
-/* 应用场景轮播 */
 .applications {
     padding: 40px 0;
     background: var(--bg-secondary);
@@ -1195,8 +1180,8 @@ section {
 .application-video,
 .analysis-video-wrapper {
     position: relative;
-    height: auto; /* 移除固定宽高比，高度自适应 */
-    overflow: visible; /* 允许视频完整显示 */
+    height: auto;
+    overflow: visible;
     border-radius: 15px;
     margin-bottom: 30px;
     background: var(--bg-tertiary);
@@ -1204,12 +1189,12 @@ section {
 
 .app-video,
 .analysis-video-player {
-    position: relative; /* 改为相对定位 */
+    position: relative;
     top: auto;
     left: auto;
     width: 100%;
-    height: auto; /* 高度根据视频原始比例自适应 */
-    object-fit: contain; /* 保持原始比例，不裁剪 */
+    height: auto;
+    object-fit: contain;
     opacity: 0;
     transition: opacity 0.5s ease;
     display: block;
@@ -1275,7 +1260,6 @@ section {
 }
 
 /* Abilities section with tab buttons instead of arrows */
-/* 标题行容器：标题在左，按钮在右 */
 .abilities-tabs .title-row {
     display: flex;
     justify-content: space-between;
@@ -1326,14 +1310,12 @@ section {
     transform: none;
 }
 
-/* 技术分析 */
 .analysis {
     padding: 40px 0;
     background: var(--bg-primary);
 }
 
 
-/* 引用 */
 .citation {
     padding: 40px 0;
     background: var(--bg-primary);
@@ -1360,7 +1342,6 @@ section {
     color: var(--text-primary);
 }
 
-/* 页脚 */
 .footer {
     background: var(--bg-tertiary);
     padding: 40px 0;
@@ -1369,7 +1350,6 @@ section {
     border-top: 1px solid var(--border-color);
 }
 
-/* 响应式设计 */
 @media (max-width: 768px) {
     .container {
         padding: 0 20px;
@@ -1478,7 +1458,7 @@ section {
     
     /* Input/Output Video Container responsive */
     .input-output-video-container {
-        gap: 20px;
+        gap: 0;
         padding: 0 20px;
     }
     
@@ -1492,7 +1472,6 @@ section {
     }
 }
 
-/* 视频占位符样式 */
 .video-placeholder {
     background: var(--bg-tertiary);
     display: flex;
@@ -1512,7 +1491,6 @@ section {
     display: block;
 }
 
-/* 动画效果 */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -1528,7 +1506,6 @@ section {
     animation: fadeInUp 0.6s ease-out;
 }
 
-/* 滚动条样式 */
 ::-webkit-scrollbar {
     width: 8px;
     height: 4px;
@@ -1549,26 +1526,19 @@ section {
 
 
 
-/* =========================================
-   修复：Blind Spot Comparison 底部空白问题
-   ========================================= */
-
-/* 1. 针对隐藏的源视频 (class="video") 进行特殊处理 */
-/* 必须使用 !important 覆盖之前全局设置的 height: auto 和 position: relative */
 .input-output-video-container .result-video-small video.video {
-    position: absolute !important; /* 绝对定位，使其脱离文档流，不再占据空间 */
+    position: absolute !important;
     top: 0;
     left: 0;
-    width: 100% !important;        /* 保持宽度，确保 JS 能正确读取分辨率 */
-    height: 0 !important;          /* 强制高度为 0 */
-    opacity: 0 !important;         /* 确保不可见 */
-    z-index: -1;                   /* 放在最底层 */
+    width: 100% !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    z-index: -1;
     margin: 0 !important;
     padding: 0 !important;
-    pointer-events: none;          /* 禁止鼠标交互 */
+    pointer-events: none;
 }
 
-/* 2. 确保 Canvas 正常显示 */
 .input-output-video-container .result-video-small .videoMerge {
     position: relative !important;
     display: block !important;
@@ -1577,9 +1547,8 @@ section {
     z-index: 10;
 }
 
-/* 3. 确保包裹它们的相对定位容器表现正常 */
 .input-output-video-container .result-video-small > div {
-    display: block; /* 确保是块级元素 */
+    display: block;
     width: 100%;
-    line-height: 0; /* 消除行内元素间隙 */
+    line-height: 0;
 }

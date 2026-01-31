@@ -78,7 +78,7 @@
                     <a href="" target="_blank">Jianxun Cui</a>,
                     <a href="" target="_blank">Hao Li</a>,
                     <a href="" target="_blank">Xie Yan</a>,
-                    <a href="" target="_blank">Wei Chen</a>,
+                    <a href="" target="_blank">Wei Chen</a>
                     <br><br>
                     &dagger;Proejct Lead, *Equal Contribution, &sect;Corresponding Author
                 </div>
@@ -260,13 +260,13 @@
 
             <div class="results-list">
                 
-                <!-- Result Item 1: Real-world Application -->
+                <!-- Result Item 1: Real-world Application (front-view LiDAR) -->
                 <div class="result-item">
                     <div class="result-info">
-                        <h3>Video Demo on Real-world Application in a Zero-shot Setting</h3>
-                        <!-- <p> -->
-                            <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
-                        <!-- </p> -->
+                        <h3>Zero-Shot Demo on Unseen Driving Scenes</h3>
+                        <p class="text-large">
+                            We collected in-vehicle LiDAR sequences to evaluate the model on completely unseen scenarios. Front-view depth is shown here, with LiDAR covering the full RGB field of view.
+                        </p>
                     </div>
                     <div class="result-video-small result-video-compact">
                         <video  style="width: 100%; height: auto; display: block;" playsinline muted loop autoplay controls class="app-video lazy-video" preload="metadata" data-src="assets/video/ready/4-ad.mp4">
@@ -279,38 +279,124 @@
                 <!-- Result Item 2: Blind spot completion - Input/Output Video Comparison -->
                 <div class="result-item">
                     <div class="result-info">
-                        <h3>Blind spot completion test for left and right views uncovered by LiDAR</h3>
-                        <p>
+                        <h3>Demonstration of Blind-Spot Depth Completion</h3>
+                        <!-- <p>
                             <span style="color:#888; font-size: 0.9em;">Input video (top) and output comparison (bottom). Drag the slider to compare left and right views.</span>
+                        </p> -->
+                        <p class="text-large">
+                            Same in-vehicle dataset; here we show front, left and right views. The limited LiDAR FOV yields only narrow visible regions; our model completes the blind spots. Comparison to baseline Lingbot-Depth.
                         </p>
                     </div>
 
-                    <!-- Input/Output Video Container -->
-                    <div class="input-output-video-container">
-                        <!-- Input Video (Model Input) -->
-                        <div class="video-section">
-                            <div class="video-label">Input</div>
-                            <div class="result-video-small">
-                                <video playsinline muted loop autoplay controls class="app-video lazy-video" preload="metadata" data-src="assets/video/ready/rgb-lidar-right-1.mp4">
-                                    <source data-src="assets/video/ready/rgb-lidar-right-1.mp4" type="video/mp4">
-                                    Your browser does not support video playback.
-                                </video>
-                            </div>
-                        </div>
+                    <!-- Blindspot cases carousel: multiple input/output pairs with shared interaction pattern -->
+                    <div class="blindspot-carousel applications-carousel">
+                        <div class="carousel-container">
+                            <button class="carousel-btn prev-btn" onclick="changeBlindspotCase(-1)">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="carousel-content">
+                                <!-- Case 1: Right view #1 (original) -->
+                                <div class="application-slide active">
+                                    <div class="input-output-video-container">
+                                        <!-- Input Video (Model Input) -->
+                                        <div class="video-section">
+                                            <div class="video-label">Input (Front view)</div>
+                                            <div class="result-video-small">
+                                                <video playsinline muted loop autoplay controls class="app-video lazy-video" preload="metadata" data-src="assets/video/ready/front-rgb-lidar-1.mp4">
+                                                    <source data-src="assets/video/ready/front-rgb-lidar-1.mp4" type="video/mp4">
+                                                    Your browser does not support video playback.
+                                                </video>
+                                            </div>
+                                        </div>
 
-                        <!-- Output Video (Interactive Comparison) -->
-                        <div class="video-section">
-                            <div class="video-label">Output</div>
-                            <div class="result-video-small">
-                                <div style="position: relative;">
-                                    <video class="video" width="100%" id="blindspot_comparison" loop playsinline autoplay muted 
-                                        src="assets/video/ready/comparison-right-2.mp4" 
-                                        onplay="resizeAndPlay(this)" 
-                                        style="height: 0px; opacity: 0;">
-                                    </video>
-                                    <canvas height="0" class="videoMerge" id="blindspot_comparisonMerge"></canvas>
+                                        <!-- Output Video (Interactive Comparison) -->
+                                        <div class="video-section">
+                                            <div class="video-label">Output (Front view)</div>
+                                            <div class="result-video-small">
+                                                <div style="position: relative;">
+                                                    <video class="video" width="100%" id="blindspot_front_comparison" loop playsinline autoplay muted 
+                                                        src="assets/video/ready/front-comparison-1.mp4" 
+                                                        onplay="resizeAndPlay(this)" 
+                                                        style="height: 0px; opacity: 0;">
+                                                    </video>
+                                                    <canvas height="0" class="videoMerge" id="blindspot_front_comparisonMerge"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Case 2: Right view #2 -->
+                                <div class="application-slide">
+                                    <div class="input-output-video-container">
+                                        <!-- Input Video (Model Input) -->
+                                        <div class="video-section">
+                                            <div class="video-label">Input (Front view)</div>
+                                            <div class="result-video-small">
+                                                <video playsinline muted loop autoplay controls class="app-video lazy-video" preload="metadata" data-src="assets/video/ready/front-rgb-lidar-2.mp4">
+                                                    <source data-src="assets/video/ready/front-rgb-lidar-2.mp4" type="video/mp4">
+                                                    Your browser does not support video playback.
+                                                </video>
+                                            </div>
+                                        </div>
+
+                                        <!-- Output Video (Interactive Comparison) -->
+                                        <div class="video-section">
+                                            <div class="video-label">Output (Front view)</div>
+                                            <div class="result-video-small">
+                                                <div style="position: relative;">
+                                                    <video class="video" width="100%" id="front" loop playsinline autoplay muted 
+                                                        src="assets/video/ready/front-comparison-2.mp4" 
+                                                        onplay="resizeAndPlay(this)" 
+                                                        style="height: 0px; opacity: 0;">
+                                                    </video>
+                                                    <canvas height="0" class="videoMerge" id="frontMerge"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Case 3: Left view #1 -->
+                                <div class="application-slide">
+                                    <div class="input-output-video-container">
+                                        <!-- Input Video (Model Input) -->
+                                        <div class="video-section">
+                                            <div class="video-label">Input (Left and Right views)</div>
+                                            <div class="result-video-small">
+                                                <video playsinline muted loop autoplay controls class="app-video lazy-video" preload="metadata" data-src="assets/video/ready/left-right-rgb.mp4">
+                                                    <source data-src="assets/video/ready/left-right-rgb.mp4" type="video/mp4">
+                                                    Your browser does not support video playback.
+                                                </video>
+                                            </div>
+                                        </div>
+
+                                        <!-- Output Video (Interactive Comparison) -->
+                                        <div class="video-section">
+                                            <div class="video-label">Output (Left and Right views)</div>
+                                            <div class="result-video-small">
+                                                <div style="position: relative;">
+                                                    <video class="video" width="100%" id="blindspot_comparison_left_right" loop playsinline autoplay muted 
+                                                        src="assets/video/ready/left-right-pred.mp4" 
+                                                        onplay="resizeAndPlay(this)" 
+                                                        style="height: 0px; opacity: 0;">
+                                                    </video>
+                                                    <canvas height="0" class="videoMerge" id="blindspot_comparison_left_rightMerge"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <button class="carousel-btn next-btn" onclick="changeBlindspotCase(1)">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <span class="indicator active" onclick="setBlindspotCase(0)"></span>
+                            <span class="indicator" onclick="setBlindspotCase(1)"></span>
+                            <span class="indicator" onclick="setBlindspotCase(2)"></span>
+                            <!-- <span class="indicator" onclick="setBlindspotCase(3)"></span> -->
                         </div>
                     </div>
                 </div>
@@ -397,8 +483,8 @@
                 <div class="result-item">
                     <div class="result-info">
                         <h3>Zero-Shot Depth Super-Resolution and Completion</h3>
-                        <p class="text-large">
-                        </p>
+                        <!-- <p class="text-large">
+                        </p> -->
                     </div>
 
                     <div class="image-with-title">
@@ -459,28 +545,5 @@
     </section>
 
     <script src="script.js"></script>
-    
-    <!-- 备用：确保 setAbility 函数可用 -->
-    <script>
-        // 如果 script.js 加载失败，提供一个备用函数
-        if (typeof window.setAbility === 'undefined') {
-            console.error('警告：script.js 中的 setAbility 未加载，使用备用函数');
-            window.setAbility = function(index) {
-                console.log('使用备用 setAbility:', index);
-                const slides = document.querySelectorAll('.abilities-tabs .application-slide');
-                const buttons = document.querySelectorAll('.abilities-tabs .indicator');
-                
-                // 移除所有 active
-                slides.forEach(s => s.classList.remove('active'));
-                buttons.forEach(b => b.classList.remove('active'));
-                
-                // 添加新的 active
-                if (slides[index]) slides[index].classList.add('active');
-                if (buttons[index]) buttons[index].classList.add('active');
-            };
-        } else {
-            console.log('✓ setAbility 函数已从 script.js 正确加载');
-        }
-    </script>
 </body>
 </html>
