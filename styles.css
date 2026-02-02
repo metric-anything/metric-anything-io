@@ -1318,7 +1318,8 @@ section {
 
 .citation {
     padding: 40px 0;
-    background: var(--bg-primary);
+    /* background: var(--bg-primary); */
+    background: var(--bg-secondary);
 }
 
 .citation-box {
